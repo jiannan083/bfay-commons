@@ -1,7 +1,10 @@
 package cn.bfay.commons;
 
+import cn.bfay.commons.redis.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -13,12 +16,12 @@ import org.springframework.context.annotation.Configuration;
 public class AutoConfiguration {
     private static final Logger log = LoggerFactory.getLogger(AutoConfiguration.class);
 
-    //@Bean
-    //@ConditionalOnMissingBean//缺失时，初始化bean并添加到SpringIoc
-    //public RedisUtils redisUtils() {
-    //    log.info(">>>The RedisUtils Not Found，Execute Create New Bean.");
-    //    return new RedisUtils();
-    //}
+    @Bean
+    @ConditionalOnMissingBean//缺失时，初始化bean并添加到SpringIoc
+    public RedisUtils redisUtils() {
+        log.info(">>>The RedisUtils Not Found，Execute Create New Bean.");
+        return new RedisUtils();
+    }
     //
     //@Bean
     //@ConditionalOnMissingBean//缺失时，初始化bean并添加到SpringIoc
