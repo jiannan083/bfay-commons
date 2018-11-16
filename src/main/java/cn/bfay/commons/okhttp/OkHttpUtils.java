@@ -62,10 +62,6 @@ public class OkHttpUtils {
         return executeGet(url, null, tclass);
     }
 
-    public static String executeGet(String url) {
-        return executeGet(url, String.class);
-    }
-
     /**
      * 执行post form.
      *
@@ -97,10 +93,6 @@ public class OkHttpUtils {
         return executePost(url, formMap, null, tclass);
     }
 
-    public static String executePost(String url, Map<String, String> formMap) {
-        return executePost(url, formMap, String.class);
-    }
-
     /**
      * 执行post requestbody.
      *
@@ -130,11 +122,6 @@ public class OkHttpUtils {
     public static <T> T executePost(String url, String requestBody, Class<T> tclass) {
         return executePost(url, requestBody, null, tclass);
     }
-
-    public static String executePost(String url, String requestBody) {
-        return executePost(url, requestBody, String.class);
-    }
-
 
     private static <T> TypeReference<T> convert2TypeReference(Class<T> tclass) {
         return new TypeReference<T>() {
