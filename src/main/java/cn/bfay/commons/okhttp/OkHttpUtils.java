@@ -1,15 +1,21 @@
 package cn.bfay.commons.okhttp;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * OkHttpUtils.
@@ -18,6 +24,18 @@ import java.util.Map;
  */
 public class OkHttpUtils {
     private static final Logger log = LoggerFactory.getLogger(OkHttpUtils.class);
+
+    private static ObjectMapper mapper = new ObjectMapper();
+
+    @PostConstruct
+    public static void init() {
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        //mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.registerModule(new JavaTimeModule());
+        mapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+    }
 
     public static void execute(OkHttpWapper... okHttpWappers) {
         parallelExecute(okHttpWappers);
@@ -131,8 +149,6 @@ public class OkHttpUtils {
             }
         };
     }
-
-    private static final ObjectMapper mapper = new ObjectMapper();
 
     //private static void parallelExecute(OkHttpWapper... okHttpWappers) {
     //    if (okHttpWappers == null || okHttpWappers.length == 0) {
