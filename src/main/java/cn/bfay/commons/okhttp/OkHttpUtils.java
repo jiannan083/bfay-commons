@@ -11,7 +11,6 @@ import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -25,16 +24,16 @@ import java.util.TimeZone;
 public class OkHttpUtils {
     private static final Logger log = LoggerFactory.getLogger(OkHttpUtils.class);
 
-    private static ObjectMapper mapper = new ObjectMapper();
+    public static ObjectMapper mapper = new ObjectMapper();
 
-    @PostConstruct
-    public static void init() {
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        //mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        mapper.registerModule(new JavaTimeModule());
-        mapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+    static {
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .registerModule(new JavaTimeModule())
+                .setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        //.registerModule(new ParameterNamesModule())
+        //.registerModule(new Jdk8Module())
     }
 
     public static void execute(OkHttpWapper... okHttpWappers) {
