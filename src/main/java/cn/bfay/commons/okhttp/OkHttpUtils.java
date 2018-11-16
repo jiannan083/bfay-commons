@@ -12,12 +12,12 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
- * OkhttpUtils.
+ * OkHttpUtils.
  *
  * @author wangjiannan
  */
-public class OkhttpUtils {
-    private static final Logger log = LoggerFactory.getLogger(OkhttpUtils.class);
+public class OkHttpUtils {
+    private static final Logger log = LoggerFactory.getLogger(OkHttpUtils.class);
 
     public static void execute(OkHttpWapper... okHttpWappers) {
         parallelExecute(okHttpWappers);
