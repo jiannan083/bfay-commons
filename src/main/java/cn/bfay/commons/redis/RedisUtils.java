@@ -38,10 +38,10 @@ import java.util.concurrent.TimeUnit;
 public class RedisUtils {
     private static final Logger logger = LoggerFactory.getLogger(RedisUtils.class);
 
-    public static RedisConnectionFactory factory;
-    public static RedisTemplate<String, Object> template;
-    public static StringRedisTemplate stringRedisTemplate;
-    public static ObjectMapper mapper = new ObjectMapper();
+    private static RedisConnectionFactory factory;
+    private static RedisTemplate<String, Object> template;
+    private static StringRedisTemplate stringRedisTemplate;
+    private static ObjectMapper mapper = new ObjectMapper();
 
     public RedisUtils() {
     }
