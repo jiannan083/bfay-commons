@@ -27,22 +27,22 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * 加密工具类-EncryptionUtils.
- * Base64:对称密码,每6比特转成一位64进制数,应用：字节数组对应的字符串是乱码时，可以进行Base64编码，使得能显示成简单的字符串.
- * md5单向加密算法:应用:用户密码加密.
- * SHA单向加密算法:SHA-1（160比特）、SHA2（SHA-256、SHA-384、SHA-512 应用:数字签名.
- * Hmac单向加密算法:有密钥,全称为“Hash Message Authentication Code”,中文名“散列消息鉴别码”,算法可选以下多种算法:
- * HmacMD5
- * HmacSHA1
- * HmacSHA256
- * HmacSHA384
- * HmacSHA512
- * 应用：会话认证MAC.
+ * 加密工具类-CodecUtils.
+ *
+ * <p>Base64:对称密码,每6比特转成一位64进制数,应用：字节数组对应的字符串是乱码时，可以进行Base64编码，使得能显示成简单的字符串.
+ * <p>md5单向加密算法:应用:用户密码加密.
+ * <p>SHA单向加密算法:SHA-1（160比特）、SHA2（SHA-256、SHA-384、SHA-512 应用:数字签名.
+ * <p>Hmac单向加密算法:有密钥,全称为“Hash Message Authentication Code”,中文名“散列消息鉴别码”,算法可选以下多种算法,
+ * HmacMD5 * HmacSHA1 * HmacSHA256 * HmacSHA384 * HmacSHA512 * 应用：会话认证MAC.
+ * <p>des对称加密:key size must be equal to 56
+ * <p>3des对称加密:key size must be equal to 112 or 168
+ * <p>aes对称加密:key size must be equal to 128, 192 or 256,but 192 and 256 bits may not be available
+ * <p>rsa非对称加密:
  *
  * @author wangjiannan
  */
-public class EncryptionUtils {
-    private static final Logger log = LoggerFactory.getLogger(EncryptionUtils.class);
+public class CodecUtils {
+    private static final Logger log = LoggerFactory.getLogger(CodecUtils.class);
 
     private static final String CONVERSION_TYPE_BASE64 = "base64";
     private static final String CONVERSION_TYPE_HEX = "hex";
